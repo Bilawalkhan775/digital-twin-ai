@@ -1,0 +1,22 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# API keys and secrets
+.env
+.env.*
+!.env.example
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Testing and editor cache
+.pytest_cache/
+.vscode/
+
+# Local database files
+*.db
+*.sqlite3
