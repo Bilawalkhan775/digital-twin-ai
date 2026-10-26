@@ -38,32 +38,43 @@ def ask_groq(messages):
         client.close()
 
 
+
+
 # ----------------------------------
-# Provider 2: GEMINI
+# Provider 2: GEMINI 
 # ----------------------------------
 
 def ask_gemini(messages):
 
     contents = []
+    system_instructions = []
 
     for message in messages:
 
-        role = (
-            "model"
-            if message["role"] == "assistant"
-            else "user"
+        role = message["role"]
+        content = message["content"]
+
+        # Handle system instructions separately
+        if role == "system":
+            system_instructions.append(content)
+            continue
+
+        # Convert OpenAI roles to Gemini roles
+        gemini_role = (
+            "model" if role == "assistant" else "user"
         )
 
         contents.append(
             types.Content(
-                role=role,
+                role=gemini_role,
                 parts=[
-                    types.Part.from_text(
-                        text=message["content"]
-                    )
+                    types.Part.from_text(text=content)
                 ]
             )
         )
+
+    # Combine system instructions
+    system_prompt = "\n\n".join(system_instructions)
 
     client = genai.Client(
         api_key=os.getenv("GEMINI_API_KEY"),
@@ -75,14 +86,16 @@ def ask_gemini(messages):
     try:
         response = client.models.generate_content(
             model=os.getenv("GEMINI_MODEL"),
-            contents=contents
+            contents=contents,
+            config=types.GenerateContentConfig(
+                system_instruction=system_prompt
+            )
         )
 
         return response.text
 
     finally:
         client.close()
-
 
 # ----------------------------------
 # Provider 3: OPENROUTER
