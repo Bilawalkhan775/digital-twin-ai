@@ -84,6 +84,7 @@ def chunk_document(document, max_words=120):
                 "source": document["source"],
                 "section": heading,
                 "chunk_index": index,
+                "person": "Muhammad Bilawal Khan",
                 "text": text
             })
 

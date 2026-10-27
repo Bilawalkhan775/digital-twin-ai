@@ -155,6 +155,7 @@ class HybridRetriever:
                 "text": document,
                 "source": metadata["source"],
                 "section": metadata["section"],
+                "person": metadata.get("person", ""),
                 "score": float(score)
             })
 

@@ -56,7 +56,8 @@ def build_vector_store():
             {
                 "source": chunk["source"],
                 "section": chunk["section"],
-                "chunk_index": chunk["chunk_index"]
+                "chunk_index": chunk["chunk_index"],
+                "person": chunk["person"]
             }
             for chunk in chunks
         ]

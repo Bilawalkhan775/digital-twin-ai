@@ -1,22 +1,158 @@
-# Python virtual environment
+
+# ==========================================
+# DIGITAL TWIN AI — ROOT .GITIGNORE
+# ==========================================
+
+# ------------------------------------------
+# 1. ENVIRONMENT VARIABLES & API SECRETS
+# ------------------------------------------
+
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Allow example configuration without real secrets
+!.env.example
+!**/.env.example
+
+# Private credentials
+secrets/
+credentials/
+**/secrets/
+**/credentials/
+
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+service-account*.json
+credentials*.json
+token.json
+
+# ------------------------------------------
+# 2. PYTHON VIRTUAL ENVIRONMENTS
+# ------------------------------------------
+
 .venv/
 venv/
 env/
+ENV/
 
-# API keys and secrets
-.env
-.env.*
-!.env.example
+# ------------------------------------------
+# 3. PYTHON CACHE & GENERATED FILES
+# ------------------------------------------
 
-# Python cache
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
-# Testing and editor cache
 .pytest_cache/
-.vscode/
+.mypy_cache/
+.ruff_cache/
+
+.coverage
+htmlcov/
+
+*.egg-info/
+.eggs/
+
+# ------------------------------------------
+# 4. REACT / VITE / NODE.JS
+# ------------------------------------------
+
+node_modules/
+**/node_modules/
+
+dist/
+dist-ssr/
+build/
+
+*.local
+.vite/
+
+# ------------------------------------------
+# 5. CHROMADB & LOCAL RAG DATA
+# ------------------------------------------
+
+# Entire local database and generated data
+/data/
+
+# Other vector database directories
+/chroma_db/
+**/chroma/
+
+# Generated evaluation outputs
+/evaluations/
 
 # Local database files
 *.db
+*.sqlite
 *.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# ------------------------------------------
+# 6. MODEL FILES & CACHES
+# ------------------------------------------
+
+.cache/
+**/.cache/
+
+models/
+
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.h5
+
+# ------------------------------------------
+# 7. LOGS
+# ------------------------------------------
+
+logs/
+*.log
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ------------------------------------------
+# 8. TEMPORARY FILES & BACKUPS
+# ------------------------------------------
+
+tmp/
+temp/
+backups/
+
+*.tmp
+*.bak
+*.backup
+
+# ------------------------------------------
+# 9. EDITORS & IDE
+# ------------------------------------------
+
+.vscode/
+.idea/
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ------------------------------------------
+# 10. OPERATING SYSTEM FILES
+# ------------------------------------------
+
+.DS_Store
+Thumbs.db
+Desktop.ini

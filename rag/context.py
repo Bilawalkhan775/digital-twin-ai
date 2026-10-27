@@ -132,6 +132,7 @@ def format_context(results):
         passage = (
             f"[Source {index}]\n"
             f"File: {result['source']}\n"
+            f"Profile owner: {result.get('person') or 'Not specified'}\n"
             f"Section: {result['section']}\n"
             f"Content:\n{result['text']}"
         )
